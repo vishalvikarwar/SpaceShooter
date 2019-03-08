@@ -2,27 +2,40 @@ cc.Class({
     extends: cc.Component,
 
     properties: 
-    {
-        missileArray:{
-            default:[],
-            type: [cc.Node],
-            visible: false
-        },    
+    {        
+        missileCount: 20,     
+        simpleMissilePrefab: cc.Prefab
     },
 
-    addMissile(missile)
+    onLoad: function()
     {
-        this.missileArray.push(missile)
-        //this.node.addChild(missile)
+        this.scene = cc.director.getScene()
+        this.missilePool = new cc.NodePool('MissileController')
+        this.initPool()
     },
 
-    removeMissile(missile)
+    initPool: function()
     {
-        this.missileArray.filter(function(value, index, arr){
-            if(value == missile)
-            {
-                this.missileArray.splice(index, 1)
-            }
-        })
+        for(let i = 0; i < this.missileCount; i++)
+        {
+            let missile = cc.instantiate(this.simpleMissilePrefab)
+            this.missilePool.put(missile)
+        }
+    },
+
+    getMissile()
+    {
+        let missile = null
+        if(this.missilePool.size() > 0)
+        {
+            missile = this.missilePool.get(this.missilePool)
+        }
+        else
+        {
+            missile = cc.instantiate(this.simpleMissilePrefab)
+        }
+
+        missile.parent = this.scene
+        return missile
     }
 });

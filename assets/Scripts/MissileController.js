@@ -1,35 +1,17 @@
-var MissileManager = require('MissileManager')
-
 cc.Class({
     extends: cc.Component,
 
-    properties: {
-
+    properties: 
+    {
         speed: 5,
-
-        missileManager:
-        {
-            default: null,
-            type: MissileManager,
-            visible: false
-        }
-    },
-
-    onEnable: function()
-    {
-        this.missileManager.addMissile(this.node)
-    },
-
-    onDisable: function()
-    {
-        this.missileManager.removeMissile(this.node)
     },
 
     onLoad: function()
     {
         this.anim = this.node.getComponentInChildren(cc.Animation)
         this.rigidBody = this.node.getComponent(cc.RigidBody)
-        this.missileManager = cc.find("Canvas/MissileManager").getComponent("MissileManager")
+
+        cc.log(this.anim.defaultClip.duration)
     },
 
     start:function()
@@ -39,12 +21,25 @@ cc.Class({
 
     onBeginContact: function(contact, selfCollider, otherCollider)
     {
-        if(otherCollider.node.name !== "Spaceship")
+        if(otherCollider.node.name !== ("Spaceship" && "Missile"))
         {
-            this.anim.play()
-            this.rigidBody.linearVelocity = cc.Vec2.ZERO
-            setTimeout(this.node.destroy(), this.anim.currentClip.duration)
+            this.onMissileHit()
         }
+    },
+
+    onMissileHit()
+    {
+        this.anim.play()
+        this.rigidBody.linearVelocity = cc.Vec2.ZERO
+
+        setTimeout(function(){
+            this.missilePool.put(this.node)
+        }.bind(this), this.anim.defaultClip.duration)
+    },
+
+    reuse(missilePool)
+    {
+        this.missilePool = missilePool
     },
 
 });

@@ -1,36 +1,10 @@
-var MissileType = require('MissileType')
-
 cc.Class({
     extends: cc.Component,
 
-    properties: {
-
-        simpleMissilePrefab:
-        {
-            default: null,
-            type: cc.Prefab
-        },
-
-        currentLoadedMissile:
-        {
-            default: MissileType.SIMPLE,
-            type: MissileType,
-            serializable: false,
-            visible: false
-        },
-    },
-
     onLoad: function()
     {
-        this.scene = cc.director.getScene()
-        this.timer = 0
-        this.nextFireTime = 0
-        this.canFire = true
-    },
-
-    update: function(dt)
-    {
-        this.timer += dt
+        this.isFireKeyUp = true
+        this.missileManager = cc.find("Canvas/MissileManager").getComponent("MissileManager")
     },
 
     onEnable: function()
@@ -49,12 +23,10 @@ cc.Class({
 
     onKeyDown: function(event)
     {
-        if(event.keyCode == cc.macro.KEY.space && this.canFire)
+        if(event.keyCode == cc.macro.KEY.space && this.isFireKeyUp)
         {  
-            this.launchMissile(this.currentLoadedMissile)
-            this.nextFireTime = this.timer + this.fireRate
-
-            this.canFire = false
+            this.launchMissile()
+            this.isFireKeyUp = false
         }
     },
 
@@ -62,21 +34,13 @@ cc.Class({
     {
         if(event.keyCode == cc.macro.KEY.space)
         {
-            this.canFire = true
+            this.isFireKeyUp = true
         }
     },
 
-    launchMissile(missileType)
+    launchMissile()
     {
-
-        switch(missileType)
-        {
-            case MissileType.SIMPLE: 
-                var newMissile = cc.instantiate(this.simpleMissilePrefab)
-                break;
-        }
-        
-        newMissile.parent = this.scene
+        var newMissile = this.missileManager.getMissile()
         var newPosition = this.node.convertToWorldSpace(this.node.getPosition())
         newMissile.setPosition(newPosition)
     }
