@@ -1,0 +1,31 @@
+{
+  "ver": "2.2.0",
+  "uuid": "dcb9a6d0-9961-436a-a5c8-0324eb1a90ed",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "subMetas": {
+    "Missile_3_Flying_004": {
+      "ver": "1.0.3",
+      "uuid": "f07ad912-972c-4b00-8178-ea6a5478eccd",
+      "rawTextureUuid": "dcb9a6d0-9961-436a-a5c8-0324eb1a90ed",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 8,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 146,
+      "height": 501,
+      "rawWidth": 146,
+      "rawHeight": 517,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

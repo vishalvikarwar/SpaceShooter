@@ -1,0 +1,31 @@
+{
+  "ver": "2.2.0",
+  "uuid": "af6e3311-0d74-4a93-b06d-b93a9a9c1af7",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "subMetas": {
+    "Crystal_02": {
+      "ver": "1.0.3",
+      "uuid": "00e31e9f-6778-4ea2-9fb4-d18226756f4a",
+      "rawTextureUuid": "af6e3311-0d74-4a93-b06d-b93a9a9c1af7",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 226,
+      "height": 300,
+      "rawWidth": 226,
+      "rawHeight": 300,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

@@ -3,10 +3,10 @@
   "_name": "Simple_Missile_Explosion",
   "_objFlags": 0,
   "_native": "",
-  "_duration": 0.6,
-  "sample": 60,
-  "speed": 2,
-  "wrapMode": 1,
+  "_duration": 0.4,
+  "sample": 20,
+  "speed": 1,
+  "wrapMode": "0",
   "curveData": {
     "comps": {
       "cc.Sprite": {
@@ -14,47 +14,47 @@
           {
             "frame": 0,
             "value": {
-              "__uuid__": "d2e23ffa-5afb-429d-970a-e19c1ed757c1"
+              "__uuid__": "68af5715-0c16-46b9-a3ac-078aa149051d"
             }
           },
           {
-            "frame": 0.08333333333333333,
+            "frame": 0.05,
             "value": {
               "__uuid__": "52979092-6772-4dd9-b9af-62f188255f7d"
             }
           },
           {
-            "frame": 0.16666666666666666,
+            "frame": 0.1,
             "value": {
               "__uuid__": "a4f04c84-1b1d-4be3-b659-48629dfebf13"
             }
           },
           {
-            "frame": 0.25,
-            "value": {
-              "__uuid__": "68af5715-0c16-46b9-a3ac-078aa149051d"
-            }
-          },
-          {
-            "frame": 0.3333333333333333,
+            "frame": 0.15,
             "value": {
               "__uuid__": "aacd9c93-0378-4dff-bd50-c012e8c505ee"
             }
           },
           {
-            "frame": 0.4166666666666667,
+            "frame": 0.2,
             "value": {
               "__uuid__": "cfb55f5a-a29c-4a20-8d19-0ceaad7f32bb"
             }
           },
           {
-            "frame": 0.5,
+            "frame": 0.25,
+            "value": {
+              "__uuid__": "e4a2efc1-bc82-4e93-80b2-9fe90cc7cb9d"
+            }
+          },
+          {
+            "frame": 0.3,
             "value": {
               "__uuid__": "b7f64552-35fb-4641-bbeb-36ffe3aecea2"
             }
           },
           {
-            "frame": 0.5833333333333334,
+            "frame": 0.35,
             "value": {
               "__uuid__": "eeacde26-33a6-439f-ae8d-790b0dad95c5"
             }
