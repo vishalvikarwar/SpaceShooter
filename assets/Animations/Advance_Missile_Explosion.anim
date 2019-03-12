@@ -1,0 +1,73 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "Advance_Missile_Explosion",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.45,
+  "sample": 20,
+  "speed": 1,
+  "wrapMode": 1,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0,
+            "value": {
+              "__uuid__": "83e62464-8fd9-4705-993f-cc5fee5563a5"
+            }
+          },
+          {
+            "frame": 0.05,
+            "value": {
+              "__uuid__": "bdeecfea-9e39-4d99-a235-5ed9796380c2"
+            }
+          },
+          {
+            "frame": 0.1,
+            "value": {
+              "__uuid__": "09f659c4-0eee-4839-ba79-02a3728010b0"
+            }
+          },
+          {
+            "frame": 0.15,
+            "value": {
+              "__uuid__": "740b9b7f-c901-4429-909f-e239a64e0c1f"
+            }
+          },
+          {
+            "frame": 0.2,
+            "value": {
+              "__uuid__": "8657efe9-6ed8-43b0-843b-99f0c48056a2"
+            }
+          },
+          {
+            "frame": 0.25,
+            "value": {
+              "__uuid__": "bd4390b8-acd2-4b1c-899f-cc2d94db9afb"
+            }
+          },
+          {
+            "frame": 0.3,
+            "value": {
+              "__uuid__": "d3da8148-ce74-4480-a5b4-dba8e7f97555"
+            }
+          },
+          {
+            "frame": 0.35,
+            "value": {
+              "__uuid__": "2813efd4-2b83-46ef-b42a-52e8d1a5cb1f"
+            }
+          },
+          {
+            "frame": 0.4,
+            "value": {
+              "__uuid__": "10143fa9-0691-42cf-82af-54ddf5f48b97"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}

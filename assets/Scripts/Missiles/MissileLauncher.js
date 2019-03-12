@@ -5,17 +5,17 @@ cc.Class({
 
     properties:
     {
-        //Prefabs of each missile type
-        simpleMissilePrefab: cc.Prefab,
-        heavyMissilePrefab: cc.Prefab,
-        advanceMissilePrefab: cc.Prefab,
-
         //Current selected missile
-        selectedMissile: MissileType.SIMPLE
+        selectedMissile:
+        {
+            default: MissileType.SIMPLE,
+            type: MissileType,
+        }
     },
 
     onLoad: function()
     {
+        this.selectedMissile = MissileType.SIMPLE
         this.isFireKeyUp = true
         this.missileManager = cc.find("Canvas/MissileManager").getComponent("MissileManager")
     },
@@ -36,8 +36,28 @@ cc.Class({
 
     onKeyDown: function(event)
     {
+        switch(event.keyCode)
+        {
+            case cc.macro.KEY.p:
+                this.selectedMissile = MissileType.SIMPLE
+                cc.log("Missile type - Simple")
+                cc.log(this.selectedMissile)
+                break
+            case cc.macro.KEY.l:
+                this.selectedMissile = MissileType.HEAVY
+                cc.log("Missile type - Heavy")
+                cc.log(this.selectedMissile)
+                break
+            case cc.macro.KEY.m:
+                this.selectedMissile = MissileType.ADVANCE
+                cc.log("Missile type - Advance")
+                cc.log(this.selectedMissile)
+                break
+        }
+
         if(event.keyCode == cc.macro.KEY.space && this.isFireKeyUp)
         {  
+            // cc.log("Fire key pressed")
             this.launchMissile()
             this.isFireKeyUp = false
         }
@@ -53,7 +73,7 @@ cc.Class({
 
     launchMissile()
     {
-        var newMissile = this.missileManager.getMissile()
+        var newMissile = this.missileManager.getMissile(this.selectedMissile)
         var newPosition = this.node.convertToWorldSpace(this.node.getPosition())
         newMissile.setPosition(newPosition)
     }

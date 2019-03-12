@@ -1,41 +1,111 @@
+var MissileType = require('MissileType')
+
 cc.Class({
     extends: cc.Component,
 
     properties: 
-    {        
-        missileCount: 20,     
-        simpleMissilePrefab: cc.Prefab
+    {
+        //No. of missiles to initialize
+        simpleMissileCount: 50,
+        heavyMissileCount: 20,
+        advanceMissileCount: 10
     },
 
     onLoad: function()
     {
         this.scene = cc.director.getScene()
-        this.missilePool = new cc.NodePool('MissileController')
+
+        this.simpleMissilePool = new cc.NodePool('MissileController')
+        this.heavyMissilePool = new cc.NodePool('MissileController')
+        this.advanceMissilePool = new cc.NodePool('MissileController')
+
+        this.missileFactory = this.node.getComponent('MissileFactory')
         this.initPool()
     },
 
     initPool: function()
     {
-        for(let i = 0; i < this.missileCount; i++)
+        for(let i = 0; i < this.simpleMissileCount; i++)
         {
-            let missile = cc.instantiate(this.simpleMissilePrefab)
-            this.missilePool.put(missile)
+            let missile = this.missileFactory.createMissile(MissileType.SIMPLE)
+            this.simpleMissilePool.put(missile)
+        }
+
+        for(let i = 0; i < this.heavyMissileCount; i++)
+        {
+            let missile = this.missileFactory.createMissile(MissileType.HEAVY)
+            this.heavyMissilePool.put(missile)
+        }
+
+        for(let i = 0; i < this.advanceMissileCount; i++)
+        {
+            let missile = this.missileFactory.createMissile(MissileType.ADVANCE)
+            this.advanceMissilePool.put(missile)
         }
     },
 
-    getMissile()
+    getMissile(missileType)
     {
         let missile = null
-        if(this.missilePool.size() > 0)
+        switch(missileType)
+        { 
+            case MissileType.SIMPLE:
+                missile = this.getSimpleMissle()
+                break
+            case MissileType.HEAVY:
+                missile = this.getHeavyMissile()
+                break
+            case MissileType.ADVANCE:
+                missile = this.getAdvanceMissile()
+                break
+        }
+        
+        missile.parent = this.scene
+        return missile
+    },
+
+    getSimpleMissle: function()
+    {
+        cc.log("getSimpleMissile called")
+        let missile = null
+        if(this.simpleMissilePool.size() > 0)
         {
-            missile = this.missilePool.get(this)
+            missile = this.simpleMissilePool.get(this.simpleMissilePool)
         }
         else
         {
-            missile = cc.instantiate(this.simpleMissilePrefab)
+            missile = this.missileFactory.createMissile(MissileType.SIMPLE)
         }
+        return missile
+    },
 
-        missile.parent = this.scene
+    getHeavyMissile: function()
+    {
+        cc.log("getHeavyMissile called")
+        let missile = null
+        if(this.heavyMissilePool.size() > 0)
+        {
+            missile = this.heavyMissilePool.get(this.heavyMissilePool)
+        }
+        else
+        {
+            missile = this.missileFactory.createMissile(MissileType.HEAVY)
+        }
+        return missile
+    },
+
+    getAdvanceMissile: function()
+    {
+        cc.log("getAdvanceMissile called")
+        let missile = null
+        if(this.advanceMissilePool.size() > 0)
+        {
+            missile = this.advanceMissilePool.get(this.heavyMissilePool)
+        }
+        else
+        {
+            missile = this.missileFactory.createMissile(MissileType.ADVANCE)
+        }
         return missile
     }
 });

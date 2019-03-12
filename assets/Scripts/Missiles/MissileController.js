@@ -1,23 +1,33 @@
 cc.Class({
     extends: cc.Component,
 
-    properties: 
+    properties:
     {
-        speed: 5,
-        damage: 10
+        speed: 100,
+        damage: 50
     },
 
     onLoad: function()
     {
         this.anim = this.node.getComponentInChildren(cc.Animation)
         this.rigidBody = this.node.getComponent(cc.RigidBody)
+
+        if(this.anim == null)
+        {
+            cc.log("Animation component not found in MissileController's children")
+        }
+
+        if(this.rigidBody == null)
+        {
+            cc.log("Rigidbody component not found on MissileController")
+        }
     },
 
     onEnable:function()
     {
         this.rigidBody.linearVelocity = new cc.Vec2(this.speed, 0)
-        this.anim.play('Simple_Missile_Flying')
     },
+
 
     onBeginContact: function(contact, selfCollider, otherCollider)
     {
@@ -27,20 +37,13 @@ cc.Class({
         }
     },
 
-    onMissileHit()
+    onMissileHit: function()
     {
-        this.anim.play('Simple_Missile_Explosion')
         this.rigidBody.linearVelocity = cc.Vec2.ZERO
-
-        setTimeout(function(){
-            this.anim.stop()
-            this.missileManager.missilePool.put(this.node)
-        }.bind(this), this.anim.currentClip.duration * 1000)
     },
 
-    reuse: function(missileManager)
+    reuse: function(missilePool)
     {
-        this.missileManager = missileManager
+        this.missilePool = missilePool
     },
-
 });
