@@ -64,9 +64,25 @@ cc.Class({
         return missile
     },
 
+    putMissile: function(missile)
+    {
+        switch(missile)
+        {
+            case MissileType.SIMPLE:
+                simpleMissilePool.put(missile)
+                break
+            case MissileType.HEAVY:
+                heavyMissilePool.put(missile)
+                break
+            case MissileType.ADVANCE:
+                advanceMissilePool.put(missile)
+                break
+        }
+    },
+
     getSimpleMissle: function()
     {
-        cc.log("getSimpleMissile called")
+        //cc.log("getSimpleMissile called")
         let missile = null
         if(this.simpleMissilePool.size() > 0)
         {
@@ -81,7 +97,7 @@ cc.Class({
 
     getHeavyMissile: function()
     {
-        cc.log("getHeavyMissile called")
+        //cc.log("getHeavyMissile called")
         let missile = null
         if(this.heavyMissilePool.size() > 0)
         {
@@ -96,11 +112,11 @@ cc.Class({
 
     getAdvanceMissile: function()
     {
-        cc.log("getAdvanceMissile called")
+        //cc.log("getAdvanceMissile called")
         let missile = null
         if(this.advanceMissilePool.size() > 0)
         {
-            missile = this.advanceMissilePool.get(this.heavyMissilePool)
+            missile = this.advanceMissilePool.get(this.advanceMissilePool)
         }
         else
         {

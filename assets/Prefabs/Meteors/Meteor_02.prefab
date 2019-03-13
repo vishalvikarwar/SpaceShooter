@@ -55,8 +55,8 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": 286,
-      "y": 41,
+      "x": 318,
+      "y": 104,
       "z": 0
     },
     "_scale": {
@@ -123,8 +123,8 @@
     "_angularDamping": 0,
     "_linearVelocity": {
       "__type__": "cc.Vec2",
-      "x": -30,
-      "y": 10
+      "x": 0,
+      "y": 0
     },
     "_angularVelocity": 10,
     "_fixedRotation": false,
@@ -166,7 +166,6 @@
       "__id__": 1
     },
     "_enabled": true,
-    "health": 50,
     "_id": ""
   },
   {

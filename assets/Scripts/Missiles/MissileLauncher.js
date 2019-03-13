@@ -5,19 +5,32 @@ cc.Class({
 
     properties:
     {
-        //Current selected missile
+        fireRate: 1,
+
         selectedMissile:
         {
             default: MissileType.SIMPLE,
-            type: MissileType,
+            type: MissileType
         }
     },
 
     onLoad: function()
     {
-        this.selectedMissile = MissileType.SIMPLE
         this.isFireKeyUp = true
         this.missileManager = cc.find("Canvas/MissileManager").getComponent("MissileManager")
+
+        this.timer = 0
+        this.canFire = true
+    },
+
+    update: function(dt)
+    {
+        this.timer += dt
+        if(this.timer > this.fireRate && !this.canFire)
+        {
+            this.canFire = true
+            this.timer = 0
+        }
     },
 
     onEnable: function()
@@ -41,25 +54,23 @@ cc.Class({
             case cc.macro.KEY.p:
                 this.selectedMissile = MissileType.SIMPLE
                 cc.log("Missile type - Simple")
-                cc.log(this.selectedMissile)
                 break
             case cc.macro.KEY.l:
                 this.selectedMissile = MissileType.HEAVY
                 cc.log("Missile type - Heavy")
-                cc.log(this.selectedMissile)
                 break
             case cc.macro.KEY.m:
                 this.selectedMissile = MissileType.ADVANCE
                 cc.log("Missile type - Advance")
-                cc.log(this.selectedMissile)
                 break
         }
 
-        if(event.keyCode == cc.macro.KEY.space && this.isFireKeyUp)
+        if(event.keyCode == cc.macro.KEY.space && this.isFireKeyUp && this.canFire)
         {  
             // cc.log("Fire key pressed")
             this.launchMissile()
             this.isFireKeyUp = false
+            this.canFire = false
         }
     },
 
@@ -73,8 +84,8 @@ cc.Class({
 
     launchMissile()
     {
-        var newMissile = this.missileManager.getMissile(this.selectedMissile)
-        var newPosition = this.node.convertToWorldSpace(this.node.getPosition())
-        newMissile.setPosition(newPosition)
+        var missile = this.missileManager.getMissile(this.selectedMissile)
+        var position = this.node.convertToWorldSpace(this.node.getPosition())
+        missile.setPosition(position)
     }
 });

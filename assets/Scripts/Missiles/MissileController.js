@@ -1,10 +1,13 @@
+var MisileType = require('MissileType')
+
 cc.Class({
     extends: cc.Component,
 
     properties:
     {
         speed: 100,
-        damage: 50
+        damage: 50,
+        maxLifeTime: 15,
     },
 
     onLoad: function()
@@ -23,11 +26,25 @@ cc.Class({
         }
     },
 
+    // init: function(missilePool)
+    // {
+    //     this.missilePool = missilePool
+    // },
+
     onEnable:function()
     {
         this.rigidBody.linearVelocity = new cc.Vec2(this.speed, 0)
+        this.timer = 0
     },
 
+    // update: function(dt)
+    // {
+    //     this.timer += dt
+    //     if(this.timer > this.maxLifeTime)
+    //     {
+    //         this.missilePool.put(this.node)
+    //     }
+    // },
 
     onBeginContact: function(contact, selfCollider, otherCollider)
     {

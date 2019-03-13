@@ -56,8 +56,8 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": 0,
-      "y": -103,
+      "x": 237.4,
+      "y": 406.9,
       "z": 0
     },
     "_scale": {
@@ -78,7 +78,7 @@
     "_skewX": 0,
     "_skewY": 0,
     "_zIndex": 0,
-    "groupIndex": 0,
+    "groupIndex": 1,
     "_id": ""
   },
   {
@@ -268,6 +268,7 @@
     "_enabled": true,
     "speed": 100,
     "damage": 50,
+    "maxLifeTime": 15,
     "_id": ""
   },
   {
