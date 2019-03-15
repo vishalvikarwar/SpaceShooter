@@ -3,62 +3,60 @@ cc.Class({
 
     properties: 
     {
-        acceleration: 100,
-        damping: 50
+        speed: 100
     },
 
     onLoad: function () 
     {
-        //Cache rigidbody
+        //Cache rigidbody & sprite component
         this.rigidBody = this.node.getComponent(cc.RigidBody)
-        
-        //Initialise movement variables
-        this.velocity = new cc.Vec2(0, 0)
-        this.isUpKeyPressed = false
-        this.isDownKeyPressed = false
+        this.spriteNode = this.node.getComponentInChildren(cc.Sprite).node
 
-        this.rigidBody.linearDamping = this.damping
+        //Initialise max attainable positions for the ship
+        this.maxLeft = (cc.view.getFrameSize().width)  - (this.spriteNode.width / 2)
+        this.maxUp = (cc.view.getFrameSize().height) - (this.spriteNode.height / 2)
+    },
+
+    start: function()
+    {
+        this.velocity = cc.v2(0 ,0)
+    },
+
+    update: function(dt)
+    {
+        this.restrictShipMovement()
     },
 
     onEnable: function()
     {
         //Register keyboard events
-        cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
-        cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
+        cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this)
+        cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this)
     },
 
     onDisable: function()
     {
         //Unregister keyboard events
-        cc.systemEvent.off(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
+        cc.systemEvent.off(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this)
         cc.systemEvent.off(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this)
-    },
-
-    update: function(dt)
-    {
-        //Update velocity
-        if(this.isDownKeyPressed)
-        {
-            this.velocity.y -= this.acceleration * dt
-        }
-        else if(this.isUpKeyPressed)
-        {
-            this.velocity.y += this.acceleration * dt
-        }
-
-        this.rigidBody.linearVelocity = this.velocity
     },
 
     onKeyDown: function(event)
     {
         switch(event.keyCode)
         {
-            case cc.macro.KEY.w: this.isUpKeyPressed = true;
-                // cc.log("W key pressed down")
-                break;
-            case cc.macro.KEY.s: this.isDownKeyPressed = true;
-                // cc.log("S key pressed down")
-                break;
+            case cc.macro.KEY.w: this.velocity.y = this.speed
+                this.moveShip()
+                break
+            case cc.macro.KEY.s: this.velocity.y = -this.speed
+                this.moveShip()
+                break
+            case cc.macro.KEY.a: this.velocity.x = -this.speed
+                this.moveShip()
+                break
+            case cc.macro.KEY.d: this.velocity.x = this.speed
+                this.moveShip()
+                break
         }
     },
 
@@ -66,12 +64,43 @@ cc.Class({
     {
         switch(event.keyCode)
         {
-            case cc.macro.KEY.w: this.isUpKeyPressed = false;
-                // cc.log("W key pressed up")
-                break;
-            case cc.macro.KEY.s: this.isDownKeyPressed = false;
-                // cc.log("S key pressed up")
-                break;
+            case cc.macro.KEY.w: this.velocity.y = 0
+                this.moveShip()
+                break
+            case cc.macro.KEY.s: this.velocity.y = 0
+                this.moveShip()
+                break
+            case cc.macro.KEY.a: this.velocity.x = 0
+                this.moveShip()
+                break
+            case cc.macro.KEY.d: this.velocity.x  = 0
+                this.moveShip()
+                break
+        }
+    },
+
+    moveShip()
+    {
+        this.rigidBody.linearVelocity = this.velocity
+    },
+
+    restrictShipMovement()
+    {
+        if(this.node.x < -this.maxLeft)
+        {
+            this.node.x = -this.maxLeft
+        }
+        if(this.node.x > this.maxLeft)
+        {
+            this.node.x = this.maxLeft
+        }
+        if(this.node.y < -this.maxUp)
+        {
+            this.node.y = -this.maxUp
+        }
+        if(this.node.y > this.maxUp)
+        {
+            this.node.y = this.maxUp
         }
     }
 });

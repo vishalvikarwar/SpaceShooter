@@ -26,25 +26,11 @@ cc.Class({
         }
     },
 
-    // init: function(missilePool)
-    // {
-    //     this.missilePool = missilePool
-    // },
-
     onEnable:function()
     {
         this.rigidBody.linearVelocity = new cc.Vec2(this.speed, 0)
         this.timer = 0
     },
-
-    // update: function(dt)
-    // {
-    //     this.timer += dt
-    //     if(this.timer > this.maxLifeTime)
-    //     {
-    //         this.missilePool.put(this.node)
-    //     }
-    // },
 
     onBeginContact: function(contact, selfCollider, otherCollider)
     {
