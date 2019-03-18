@@ -28,18 +28,21 @@ cc.Class({
         for(let i = 0; i < this.simpleMissileCount; i++)
         {
             let missile = this.missileFactory.createMissile(MissileType.SIMPLE)
+            missile.getComponent('MissileController').init(this)
             this.simpleMissilePool.put(missile)
         }
 
         for(let i = 0; i < this.heavyMissileCount; i++)
         {
             let missile = this.missileFactory.createMissile(MissileType.HEAVY)
+            missile.getComponent('MissileController').init(this)
             this.heavyMissilePool.put(missile)
         }
 
         for(let i = 0; i < this.advanceMissileCount; i++)
         {
             let missile = this.missileFactory.createMissile(MissileType.ADVANCE)
+            missile.getComponent('MissileController').init(this)
             this.advanceMissilePool.put(missile)
         }
     },
@@ -59,26 +62,25 @@ cc.Class({
                 missile = this.getAdvanceMissile()
                 break
         }
-        
         missile.parent = this.scene
         return missile
     },
 
-    putMissile: function(missile)
-    {
-        switch(missile)
-        {
-            case MissileType.SIMPLE:
-                simpleMissilePool.put(missile)
-                break
-            case MissileType.HEAVY:
-                heavyMissilePool.put(missile)
-                break
-            case MissileType.ADVANCE:
-                advanceMissilePool.put(missile)
-                break
-        }
-    },
+    // putMissile: function(missile)
+    // {
+    //     switch(missile)
+    //     {
+    //         case MissileType.SIMPLE:
+    //             simpleMissilePool.put(missile)
+    //             break
+    //         case MissileType.HEAVY:
+    //             heavyMissilePool.put(missile)
+    //             break
+    //         case MissileType.ADVANCE:
+    //             advanceMissilePool.put(missile)
+    //             break
+    //     }
+    // },
 
     getSimpleMissle: function()
     {
@@ -91,6 +93,7 @@ cc.Class({
         else
         {
             missile = this.missileFactory.createMissile(MissileType.SIMPLE)
+            missile.getComponent('MissileController').init(this)
         }
         return missile
     },
@@ -106,6 +109,7 @@ cc.Class({
         else
         {
             missile = this.missileFactory.createMissile(MissileType.HEAVY)
+            missile.getComponent('MissileController').init(this)
         }
         return missile
     },
@@ -121,6 +125,7 @@ cc.Class({
         else
         {
             missile = this.missileFactory.createMissile(MissileType.ADVANCE)
+            missile.getComponent('MissileController').init(this)
         }
         return missile
     }

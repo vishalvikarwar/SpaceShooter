@@ -17,7 +17,7 @@ cc.Class({
         setTimeout(function()
         {
             this.anim.stop()
-            this.missilePool.put(this.node)
+            this.missileManager.heavyMissilePool.put(this.node)
         }.bind(this), this.anim.currentClip.duration * 1000)
     },
 

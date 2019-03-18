@@ -10,6 +10,12 @@ cc.Class({
         maxLifeTime: 15,
     },
 
+    init: function(missileManager)
+    {
+        cc.log("init missile")
+        this.missileManager = missileManager
+    },
+
     onLoad: function()
     {
         this.anim = this.node.getComponentInChildren(cc.Animation)
@@ -45,8 +51,9 @@ cc.Class({
         this.rigidBody.linearVelocity = cc.Vec2.ZERO
     },
 
-    reuse: function(missilePool)
-    {
-        this.missilePool = missilePool
-    },
+    // reuse: function(missilePool)
+    // {
+    //     cc.log("reuse callback")
+    //     this.missilePool = missilePool
+    // },
 });

@@ -4,28 +4,24 @@ cc.Class({
     properties:
     {
         speed: 5,
+        repeatLength: 1920,
         currentNode: cc.Node,
         nextNode: cc.Node
-    },
-
-    onLoad: function()
-    {
-        this.horizontalLength = this.currentNode.width
-        cc.log(this.horizontalLength)
     },
 
     update: function(dt)
     {
 
-        if(this.currentNode.x < -this.horizontalLength)
+        if(this.currentNode.x < -this.repeatLength)
         {
-            this.currentNode.x = this.horizontalLength
+            this.currentNode.x = this.repeatLength
         }
 
-        if(this.nextNode.x < -this.horizontalLength)
+        if(this.nextNode.x < -this.repeatLength)
         {
-            this.nextNode.x = this.horizontalLength
+            this.nextNode.x = this.repeatLength
         }
+
         this.currentNode.x -= this.speed * dt
         this.nextNode.x -= this.speed * dt
     }
