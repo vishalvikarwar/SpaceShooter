@@ -15,9 +15,9 @@ cc.Class({
     {
         this.scene = cc.director.getScene()
 
-        this.simpleMissilePool = new cc.NodePool('MissileController')
-        this.heavyMissilePool = new cc.NodePool('MissileController')
-        this.advanceMissilePool = new cc.NodePool('MissileController')
+        this.simpleMissilePool = new cc.NodePool()
+        this.heavyMissilePool = new cc.NodePool()
+        this.advanceMissilePool = new cc.NodePool()
 
         this.missileFactory = this.node.getComponent('MissileFactory')
         this.initPool()
@@ -65,22 +65,6 @@ cc.Class({
         missile.parent = this.scene
         return missile
     },
-
-    // putMissile: function(missile)
-    // {
-    //     switch(missile)
-    //     {
-    //         case MissileType.SIMPLE:
-    //             simpleMissilePool.put(missile)
-    //             break
-    //         case MissileType.HEAVY:
-    //             heavyMissilePool.put(missile)
-    //             break
-    //         case MissileType.ADVANCE:
-    //             advanceMissilePool.put(missile)
-    //             break
-    //     }
-    // },
 
     getSimpleMissle: function()
     {
