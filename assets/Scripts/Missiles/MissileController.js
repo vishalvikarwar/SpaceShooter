@@ -7,39 +7,11 @@ cc.Class({
     {
         speed: 100,
         maxLifeTime: 15,
-        _damage: 50,
-
-        damage: 
-        {
-            get: function()
-            {
-                return this._damage
-            },
-
-            getOne: function()
-            {
-                cc.log(
-                    "this is getone"
-                )
-            }
-        },
-
-        foo: function()
-        {
-            var abc = 30
-            var getABC = function()
-            {
-                return abc
-            }
-            getABC()
-        }
+        damage: 50,
     },
 
     init: function(missileManager)
     {
-        cc.log(this.damage)
-        this.properties.foo()
-        cc.log("init missile")
         this.missileManager = missileManager
     },
 
@@ -77,10 +49,4 @@ cc.Class({
     {
         this.rigidBody.linearVelocity = cc.Vec2.ZERO
     },
-
-    // reuse: function(missilePool)
-    // {
-    //     cc.log("reuse callback")
-    //     this.missilePool = missilePool
-    // },
 });

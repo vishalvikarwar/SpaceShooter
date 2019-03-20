@@ -268,7 +268,7 @@
     "_enabled": true,
     "speed": 300,
     "maxLifeTime": 5,
-    "_damage": 25,
+    "damage": 25,
     "_id": ""
   },
   {

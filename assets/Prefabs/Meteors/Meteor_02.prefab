@@ -167,8 +167,9 @@
     },
     "_enabled": true,
     "health": 50,
-    "minSpeed": -50,
-    "maxSpeed": 50,
+    "minSpeed": -200,
+    "maxSpeed": 200,
+    "meteorId": 0,
     "_id": ""
   },
   {

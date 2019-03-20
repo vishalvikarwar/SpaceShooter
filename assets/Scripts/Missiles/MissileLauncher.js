@@ -53,15 +53,15 @@ cc.Class({
         {
             case cc.macro.KEY.p:
                 this.selectedMissile = MissileType.SIMPLE
-                cc.log("Missile type - Simple")
+                //cc.log("Missile type - Simple")
                 break
             case cc.macro.KEY.l:
                 this.selectedMissile = MissileType.HEAVY
-                cc.log("Missile type - Heavy")
+                //cc.log("Missile type - Heavy")
                 break
             case cc.macro.KEY.m:
                 this.selectedMissile = MissileType.ADVANCE
-                cc.log("Missile type - Advance")
+                //cc.log("Missile type - Advance")
                 break
         }
 
