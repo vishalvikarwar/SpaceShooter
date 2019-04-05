@@ -1,0 +1,1 @@
+window.sfs = null

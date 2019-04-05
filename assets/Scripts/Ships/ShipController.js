@@ -13,8 +13,11 @@ cc.Class({
         this.spriteNode = this.node.getComponentInChildren(cc.Sprite).node
 
         //Initialise max attainable positions for the ship
-        this.maxLeft = (cc.view.getFrameSize().width)  - (this.spriteNode.width / 2)
-        this.maxUp = (cc.view.getFrameSize().height) - (this.spriteNode.height / 2)
+
+        // cc.log(cc.view.getVisibleSize ().width)
+        // cc.log(cc.view.getVisibleSize ().height)
+        this.maxLeft = (cc.view.getVisibleSize ().width / 2)  - (this.spriteNode.width / 2)
+        this.maxUp = (cc.view.getVisibleSize ().height / 2) - (this.spriteNode.height / 2)
     },
 
     start: function()
@@ -102,5 +105,5 @@ cc.Class({
         {
             this.node.y = this.maxUp
         }
-    }
+    },
 });

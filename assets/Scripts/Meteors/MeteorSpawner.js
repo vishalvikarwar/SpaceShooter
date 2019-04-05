@@ -27,6 +27,7 @@ cc.Class({
         if(this.meteorPool.size() > 0)
         {
             meteor = this.meteorPool.get()
+            meteor.active = true
             cc.log("Meteor " + meteor.getComponent('MeteorController').meteorId + " is being reused")
         }
         else
